@@ -1,11 +1,11 @@
-<h1>A text switcher for OBS</h1>
+A text switcher for OBS
 
 BATS, It does what it says on the tin.
 
 <img width="600" height="530" alt="BATS" src="https://github.com/user-attachments/assets/1905f0d9-17f1-4142-9b7a-f40a102181ac" />
 
 
-<h1>Instructions</h1>
+Instructions
 
 Once downloaded Put the BATS folder wherever you like. Do not remove any files or folders from the BATS folder, If you wish for the .EXE to be accessible from a more convenient place you can create a shortcut for it.
 
