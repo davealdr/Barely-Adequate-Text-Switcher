@@ -1,2 +1,1 @@
-Put your lines of text here,
-Each line will be shown in sequence.
+put your lines of text here,
