@@ -6,6 +6,9 @@ import os
 import random
 from CTkMenuBarPlus import *
 import configparser
+import logging
+
+logging.basicConfig(level=logging.DEBUG, filename=r"Program Files\log.log", filemode="w")
 
 config = configparser.ConfigParser()
 config.read("Program Files/Config.ini")
@@ -34,7 +37,8 @@ X = (ScreenWidth / 2) - (WindowWidth / 2)
 Y = (ScreenHeight / 2) - (WindowHeight / 2)
 
 Window.title("BATS")
-Window.iconbitmap(os.path.join("Program Files", "images", "Barely Adequate Text Switcher.Ico"))
+try: Window.iconbitmap(os.path.join("Program Files", "images", "Barely Adequate Text Switcher.Ico"))
+except: logging.warning(r"Program Files\images\Barel Adequate Text Switcher.Ico Does not exist")
 Window.geometry(f"{WindowWidth}x{WindowHeight}+{int(X)}+{int(Y)}")
 
 def ChangeTheme(): # light and dark theme control
@@ -43,7 +47,6 @@ def ChangeTheme(): # light and dark theme control
         config.write(configfile)
         
     customtkinter.set_appearance_mode(Theme)
-
 
 
 def OpenFile(): # this opens and loads the selected file
