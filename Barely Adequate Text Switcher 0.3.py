@@ -83,9 +83,6 @@ ThemeSubmenu.add_option(option="Dark", command=lambda: (globals().update(Theme =
 Frame = customtkinter.CTkFrame(Window, width=WindowWidth + 50, height=WindowHeight + 50, fg_color="transparent")
 Frame.pack(padx=0, pady=0)
 
-# this sets up the top label "Barely Adequate Text Switcher"
-BATSLabel = customtkinter.CTkLabel(master=Frame, text="Barely Adequate Text Switcher", font=("Arial", 17))
-BATSLabel.place(relx = 0.50, rely = 0.04, relwidth=0.5, anchor="center")
 
 # this sets up the Tabs
 tabview = customtkinter.CTkTabview(Frame, width=WindowWidth - 50, height=WindowHeight - 60, corner_radius=2, fg_color="transparent")
