@@ -83,10 +83,9 @@ ThemeSubmenu.add_option(option="Dark", command=lambda: (globals().update(Theme =
 Frame = customtkinter.CTkFrame(Window, width=WindowWidth + 50, height=WindowHeight + 50, fg_color="transparent")
 Frame.pack(padx=0, pady=0)
 
-
 # this sets up the Tabs
 tabview = customtkinter.CTkTabview(Frame, width=WindowWidth - 50, height=WindowHeight - 60, corner_radius=2, fg_color="transparent")
-tabview.pack(padx=20, pady=30)
+tabview.pack(padx=20, pady=5)
 
 tab_1 = tabview.add("Text Switcher")
 #tab_2 = tabview.add("tab 2")
