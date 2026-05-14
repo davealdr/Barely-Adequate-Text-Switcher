@@ -149,15 +149,14 @@ SecondsBetweenSwitchEntry.insert(0, str(config.get("TextSwitcher", "secondsbetwe
 with open(os.path.join("Program Files", "Line Change Save File.txt"), "r") as TextSwitcherTextBoxSave:
     TextSwitcherTextBox.insert(0.0, TextSwitcherTextBoxSave.read())
 
+def FixSBSEEntry(InputSeconds):
+    SecondsBetweenSwitchEntry.delete(0, len(InputSeconds))
+    SecondsBetweenSwitchEntry.insert(0, int(1))
 
-def LineChange(): # this is the text switching logic that runs on another thread
+def LineChange(Lines, UnsplitText, InputSeconds, RandomState): # this is the text switching logic that runs on another thread
     global BSS
-    Lines = TextSwitcherTextBox.get("0.0", "end").count('\n')
-    UnsplitText = TextSwitcherTextBox.get("0.0", "end")
-    InputSeconds = SecondsBetweenSwitchEntry.get()
     if InputSeconds == "" or InputSeconds[0:1] == "0":
-        SecondsBetweenSwitchEntry.delete(0, len(InputSeconds))
-        SecondsBetweenSwitchEntry.insert(0, int(1))
+        FixSBSEEntry(InputSeconds)
         InputSeconds = int(1)
 
     while BSS:
@@ -166,7 +165,7 @@ def LineChange(): # this is the text switching logic that runs on another thread
         for Line in range(0, Lines):
             with open(os.path.join("Switcher Files", "Text Switcher.txt"), "w") as txtSwitcher:
                 
-                if RandomCheckBoxState.get() == "off":
+                if RandomState == "off":
                     txtSwitcher.write(UnsplitText.splitlines()[Line])
                 else:txtSwitcher.write(UnsplitText.splitlines()[RandomOrder[int(Line)]])
                 
@@ -175,6 +174,7 @@ def LineChange(): # this is the text switching logic that runs on another thread
                     break
                 
                 time.sleep(1)
+                print(BSS)
         if BSS == False:
             with open(os.path.join("Switcher Files", "Text Switcher.txt"), "w") as txtSwitcher:
                 txtSwitcher.write(UnsplitText.splitlines()[0])
@@ -183,11 +183,17 @@ def LineChange(): # this is the text switching logic that runs on another thread
 
 def StartStop_event(): # turns a button into a toggle
     global BSS
+    
+    Lines = TextSwitcherTextBox.get("0.0", "end").count('\n')
+    UnsplitText = TextSwitcherTextBox.get("0.0", "end")
+    InputSeconds = SecondsBetweenSwitchEntry.get()
+    RandomState = RandomCheckBoxState.get()
+    
     if BSS == False:
        BSS = True
        ButtonStartStop.configure(text=("Stop"), fg_color="#DB280B", hover_color="dark red")
        # creates and starts the thread
-       LineChangeThread = threading.Thread(target=LineChange, daemon=True)
+       LineChangeThread = threading.Thread(target=LineChange, daemon=True, args=(Lines, UnsplitText, InputSeconds, RandomState))
        LineChangeThread.start()           
            
     elif BSS == True:
