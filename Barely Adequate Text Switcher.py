@@ -174,7 +174,7 @@ def LineChange(Lines, UnsplitText, InputSeconds, RandomState): # this is the tex
                     break
                 
                 time.sleep(1)
-                print(BSS)
+                
         if BSS == False:
             with open(os.path.join("Switcher Files", "Text Switcher.txt"), "w") as txtSwitcher:
                 txtSwitcher.write(UnsplitText.splitlines()[0])
